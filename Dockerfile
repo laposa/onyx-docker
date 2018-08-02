@@ -9,8 +9,11 @@ ENV ONXSHOP_DB_HOST db
 ENV ONXSHOP_DB_PORT 5432
 ENV ONXSHOP_DB_NAME docker-1_8
 
+RUN date
 RUN apt-get update
+RUN apt-get -y upgrade
 RUN apt-get install -y supervisor sudo curl wget gnupg apt-transport-https vim
+
 RUN wget https://onxshop.com/debian/conf/signing_key.pub
 RUN apt-key add signing_key.pub
 RUN echo "deb https://onxshop.com/debian/ stretch main" > /etc/apt/sources.list.d/onxshop.list
@@ -25,15 +28,23 @@ COPY entrypoint.sh /usr/local/bin/
 
 RUN a2enconf laposa
 
+# enable php-fpm
+RUN apt-get install php-fpm \
+    && a2enmod proxy_fcgi setenvif \
+    && a2enconf php7.0-fpm \
+    && a2dismod php7.0
+
 # logs should go to stdout / stderr
 RUN ln -sfT /dev/stderr /var/log/apache2/error.log \
 	&& ln -sfT /dev/stdout /var/log/apache2/access.log \
-	&& ln -sfT /dev/stdout /var/log/apache2/other_vhosts_access.log
+	&& ln -sfT /dev/stdout /var/log/apache2/other_vhosts_access.log \
+	&& ln -sfT /dev/stdout /var/log/php7.0-fpm.log
+
+# need this to create /run/php/php7.0-fpm.pid and /run/php/php7.0-fpm.sock
+RUN service php7.0-fpm start
 
 EXPOSE 80/tcp
 EXPOSE 443/tcp
 
 ENTRYPOINT ["entrypoint.sh"]
-
-CMD ["bash"]
 

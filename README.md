@@ -1,5 +1,11 @@
 # Onxshop 
 
+Build:
+docker build -t laposa/onxshop ./
+
+Publish:
+docker push laposa/onxshop
+
 Usage:
 docker run --name onxshop_instance -it -p 80:80 laposa/onxshop-standalone
 
