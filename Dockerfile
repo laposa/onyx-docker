@@ -9,7 +9,6 @@ ENV ONXSHOP_DB_HOST db
 ENV ONXSHOP_DB_PORT 5432
 ENV ONXSHOP_DB_NAME docker-1_8
 
-RUN date
 RUN apt-get update
 RUN apt-get -y upgrade
 RUN apt-get install -y supervisor sudo curl wget gnupg apt-transport-https vim
