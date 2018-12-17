@@ -1,12 +1,12 @@
 # Onxshop 
 
-Build:
+##Build:
 docker build -t laposa/onxshop ./
 
-Publish:
+##Publish:
 docker push laposa/onxshop
 
-Usage:
+##Usage:
 TODO - requires skeleton
 
 For Onxshop Demo try onxshop-standalone:
@@ -18,7 +18,7 @@ docker run --name onxshop_instance -it -p 8080:80 laposa/onxshop-standalone
 
 http://my.local.onxshop.com:8080/edit
 
-See:
+##See:
 https://github.com/laposa/onxshop-docker
 https://onxshop.com
 
