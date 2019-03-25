@@ -9,6 +9,8 @@ ENV ONXSHOP_DB_HOST db
 ENV ONXSHOP_DB_PORT 5432
 ENV ONXSHOP_DB_NAME docker-1_8
 
+ENV DEBIAN_FRONTEND noninteractive
+
 RUN date
 RUN apt-get update
 RUN apt-get -y upgrade
@@ -42,6 +44,8 @@ RUN ln -sfT /dev/stderr /var/log/apache2/error.log \
 
 # need this to create /run/php/php7.0-fpm.pid and /run/php/php7.0-fpm.sock
 RUN service php7.0-fpm start
+
+ENV DEBIAN_FRONTEND teletype
 
 EXPOSE 80/tcp
 EXPOSE 443/tcp
