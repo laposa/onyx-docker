@@ -14,10 +14,9 @@ ENV ONXSHOP_DB_NAME docker-1_8
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN date \
-  && apt-get update \
+RUN apt-get update \
   && apt-get -y upgrade \
-  && apt-get install -y supervisor sudo curl wget gnupg apt-transport-https vim
+  && apt-get install -y supervisor sudo curl wget gnupg apt-transport-https vim memcached php-memcached php-memcache
 
 RUN wget https://onxshop.com/debian/conf/signing_key.pub \
   && apt-key add signing_key.pub \
