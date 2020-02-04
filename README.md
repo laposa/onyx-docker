@@ -1,15 +1,5 @@
 # Onxshop 
 
-## Build:
-```bash
-docker build -t laposa/onyx ./
-```
-
-## Publish:
-```bash
-docker push laposa/onyx
-```
-
 ## Setup dev environment on your local server
 ### Clone repository
 ```bash
