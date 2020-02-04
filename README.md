@@ -1,10 +1,10 @@
 # Onxshop 
 
 ## Build:
-docker build -t laposa/onxshop ./
+docker build -t laposa/onyx ./
 
 ## Publish:
-docker push laposa/onxshop
+docker push laposa/onyx
 
 ## Setup dev environment on your local server
 ### Clone repository
@@ -22,12 +22,12 @@ cp -a onyx/project_skeleton/base_with_blog my_onyx_project
 cd my_onyx_project
 
 ### Run
-docker run -it --rm --network my_onyx_net -p 127.0.0.1:8080:8080/tcp --mount type=bind,source=`pwd`,target=/var/www/ laposa/onxshop
+docker run -it --rm --network my_onyx_net -p 127.0.0.1:8080:8080/tcp --mount type=bind,source=`pwd`,target=/var/www/ laposa/onyx
 
 ### Access
 http://localhost:8080/edit
 
 ## See:
-https://github.com/laposa/onxshop-docker
-https://onxshop.com
+https://github.com/laposa/onyx-docker
+https://github.com/laposa/onyx
 
