@@ -21,7 +21,7 @@ docker run -it --rm --network my_onyx_net -v $(pwd)/onyx/project_skeleton/base_w
 ```bash
 cp -a onyx/project_skeleton/base_with_blog my_onyx_project
 cd my_onyx_project
-chmod a+w -R var/
+chmod -R a+w -R var/
 ```
 
 ### Run
@@ -31,6 +31,10 @@ docker run -it --rm --network my_onyx_net -p 127.0.0.1:8080:8080/tcp --mount typ
 
 ### Access
 http://localhost:8080/edit
+```
+username: docker
+password: docker
+```
 
 ## See:
 https://github.com/laposa/onyx-docker
