@@ -21,7 +21,7 @@ docker run -it --rm --network my_onyx_net -v $(pwd)/onyx/project_skeleton/base_w
 ```bash
 cp -a onyx/project_skeleton/base_with_blog my_onyx_project
 cd my_onyx_project
-chmod -R a+w -R var/
+chmod -R a+w var/
 ```
 
 ### Run
