@@ -11,14 +11,14 @@ git clone https://github.com/laposa/onyx.git
 docker network create my_onyx_net
 ```
 
-### Db setup
+### Create Db server (if you don't have one)
 ```bash
-docker run -d --name postgres --network my_onyx_net --hostname postgres -p 127.0.0.1:5432:5432/tcp -e POSTGRES_USER=docker -e POSTGRES_PASSWORD=docker postgres:9.6
-docker run -it --rm --network my_onyx_net -v $(pwd)/onyx/project_skeleton/base_with_blog.sql:/tmp/import.sql postgres:9.6 psql -h postgres -U docker -f /tmp/import.sql
+docker run -d --name postgres --network my_onyx_net --hostname postgres -p 127.0.0.1:5432:5432/tcp -e POSTGRES_PASSWORD=docker postgres:9.6
 ```
 
 ### Project setup
 ```bash
+docker run -it --rm --network my_onyx_net -v $(pwd)/onyx/project_skeleton/base_with_blog.sql:/tmp/import.sql postgres:9.6 psql -h postgres -U docker -f /tmp/import.sql
 cp -a onyx/project_skeleton/base_with_blog my_onyx_project
 cd my_onyx_project
 chmod -R a+w var/
