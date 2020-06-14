@@ -1,4 +1,4 @@
-# Onxshop 
+# Onyx
 
 ## Setup dev environment on your local server
 ### Clone repository
@@ -15,6 +15,14 @@ docker network create my_onyx_net
 ```bash
 docker run -d --name postgres --network my_onyx_net --hostname postgres -p 127.0.0.1:5432:5432/tcp -e POSTGRES_PASSWORD=docker postgres:9.6
 ```
+
+### Create Db user (if you don't have one)
+```bash
+docker run -d --name postgres --network my_onyx_net --hostname postgres -p 127.0.0.1:5432:5432/tcp -e POSTGRES_USER=docker -e POSTGRES_PASSWORD=docker postgres:9.6
+```
+
+### Create Db?
+//todo
 
 ### Project setup
 ```bash
