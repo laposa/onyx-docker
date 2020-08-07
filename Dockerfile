@@ -30,6 +30,7 @@ COPY ./etc/ /etc/
 COPY entrypoint.sh /usr/local/bin/
 
 RUN a2enconf laposa
+RUN echo "let skip_defaults_vim = 1\nsyntax on\nset mouse-=a\nset expandtab\nset shiftwidth=4\nset tabstop=4" > /etc/vim/vimrc.local
 
 # enable php-fpm
 RUN apt-get install php-fpm \
@@ -46,9 +47,17 @@ RUN ln -sfT /dev/stderr /var/log/apache2/error.log \
 # need this to create /run/php/php7.0-fpm.pid and /run/php/php7.0-fpm.sock
 RUN service php7.0-fpm start
 
-ENV DEBIAN_FRONTEND teletype
-
 EXPOSE ${APACHE_LISTEN_PORT}/tcp
 EXPOSE ${APACHE_LISTEN_PORT_TLS}/tcp
+
+# Fix permissions for running as non-root
+RUN adduser www-data tty \
+  && chown -R www-data /var/log/ \
+  && chown www-data -R /var/run/
+
+# Switch to non-root
+USER www-data
+
+ENV DEBIAN_FRONTEND teletype
 
 ENTRYPOINT ["entrypoint.sh"]
