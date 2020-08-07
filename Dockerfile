@@ -50,6 +50,8 @@ RUN service php7.0-fpm start
 EXPOSE ${APACHE_LISTEN_PORT}/tcp
 EXPOSE ${APACHE_LISTEN_PORT_TLS}/tcp
 
+WORKDIR /var/www/
+
 # Fix permissions for running as non-root
 RUN adduser www-data tty \
   && chown -R www-data /var/log/ \
