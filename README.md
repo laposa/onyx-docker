@@ -44,6 +44,10 @@ username: docker
 password: docker
 ```
 
+## Building this image
+docker build --no-cache -t laposa/onyx .
+docker push laposa/onyx
+
 ## See:
 https://github.com/laposa/onyx-docker
 https://github.com/laposa/onyx
